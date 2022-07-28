@@ -1,32 +1,50 @@
 const url = "http://192.168.1.11:3000/api/products";
 
-function viewItems(item) {
-    // select DOM
-    let items = document.getElementById("items");
-    // create link item <a>
+function createLinkItem(id) {
+    // create and @return link item <a>
     let linkItem = document.createElement("a");
-    linkItem.setAttribute("href", "./product.html?id=" + item._id);
-    // create article item <article>
-    let articleItem = document.createElement("article");
-    // create image item <img>
+    linkItem.setAttribute("href", "./product.html?id=" + id);
+    return linkItem;
+    //linkItem.setAttribute("href", "./product.html?id=" + item._id);
+}
+
+function createImgItem(imageUrl, altTxt) {
+    // create and @return image item <img>
     let imgItem = document.createElement("img");
-    imgItem.setAttribute("src", item.imageUrl);
-    imgItem.setAttribute("alt", item.altTxt);
-    //create title item <h3>
+    imgItem.setAttribute("src", imageUrl);
+    imgItem.setAttribute("alt", altTxt);
+    return imgItem;
+}
+
+function createTitleItem(name) {
+    //create and @return title item <h3>
     let titleH3 = document.createElement("h3");
     titleH3.classList.add("productName");
-    titleH3.innerText = item.name;
-    // create paragraph item <p>
+    titleH3.innerText = name;
+    return titleH3;
+}
+
+function createParagraphItem(description) {
+    // create and @return paragraph item <p>
     let pItem = document.createElement("p");
     pItem.classList.add("productDescription");
-    pItem.innerText = item.description;
+    pItem.innerText = description;
+    return pItem;
+}
 
-    // Push Children
-    articleItem.appendChild(imgItem);
-    articleItem.appendChild(titleH3);
-    articleItem.appendChild(pItem);
+function createHtmlItems(item) {
+    // select DOM
+    let items = document.getElementById("items");
+    // create article item <article>
+    let articleItem = document.createElement("article");
+    let linkItem = createLinkItem(item._id);
+    // Push Children article
+    articleItem.appendChild(createImgItem(item.imageUrl, item.altTxt));
+    articleItem.appendChild(createTitleItem(item.name));
+    articleItem.appendChild(createParagraphItem(item.description));
+    // Push Children link
     linkItem.appendChild(articleItem);
-    // Push All Children
+    // Push Children items
     items.appendChild(linkItem);
 }
 
@@ -38,6 +56,6 @@ fetch(url)
     .then(response => {
         // Iteration object in table
         for (const element of response) {
-            viewItems(element);
+            createHtmlItems(element);
         }
     });
