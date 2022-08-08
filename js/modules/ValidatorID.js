@@ -8,6 +8,9 @@ export default class ValidatorID {
         this.init();
     }
 
+    /**
+     * Initialize Validator ID in URL
+     */
     init() {
         // Valid ID in URL
         if (this.urlParams.has('id')) {
@@ -18,14 +21,22 @@ export default class ValidatorID {
         }
     }
 
+    /**
+     * Validator RegExp => ID \w
+     */
     isValidID() {
         if (this.regexp.test(this.id)) {
             this.url = `${this.url}/${this.id}`;
         } else {
+            // TODO Gestion error
             console.log('ID: Not Valid');
         }
     }
 
+    /**
+     * Return URL Valid product
+     * @returns { string }
+     */
     getUrlProduct() {
         return `${this.urlApi}/${this.id}`;
     }
