@@ -1,4 +1,5 @@
 import ValidatorDataEventCart from "./ValidatorDataEventCart.js";
+import AddCart from "./AddCart.js";
 
 export default class EventAddCart {
     addToCart = document.querySelector('#addToCart');
@@ -12,19 +13,34 @@ export default class EventAddCart {
         this.itemQuantity = document.querySelector('#itemQuantity');
 
         this.addToCart.addEventListener('click', () => {
-            let validatorData = new ValidatorDataEventCart(this.itemQuantity.value);
-            let validNumber = validatorData.isValidNumber();
-            let validQuantity = validatorData.isQuantityValid();
+            this.validatorData = new ValidatorDataEventCart(this.itemQuantity.value);
+            let validNumber = this.validatorData.isValidNumber();
+            let validQuantity = this.validatorData.isQuantityValid();
+            let validColor = this.colorProduct();
 
             if (validNumber) {
                 if (validQuantity) {
-                    console.log('On commande !!', this.item);
+                    if (validColor) {
+                        new AddCart(this.item._id, this.validatorData.data, validColor);
+                    } else {
+                        console.error('Invalid Color !')
+                    }
                 } else {
-                    console.error("Erreur le total doit être entre 1 et 100");
+                    console.error("TODO: Erreur le total doit être entre 1 et 100");
                 }
             } else {
-                console.error("Ce n'est pas un nombre !!");
+                console.error("TODO: Ce n'est pas un nombre !!");
             }
         });
+    }
+
+    colorProduct() {
+        this.colors = document.querySelector('#colors');
+
+        if (this.validatorData.validColor(this.colors.value)) {
+            return this.colors.value;
+        } else {
+            return false;
+        }
     }
 }

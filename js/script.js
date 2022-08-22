@@ -8,4 +8,4 @@ api.getApi()
         for (const product of api.data) {
             new ViewProduct(product);
         }
-    });
+    }).catch((e) => console.log("ProductsList indisponible", e));
