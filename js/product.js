@@ -2,7 +2,6 @@ import ViewProductDetail from "./modules/ViewProductDetail.js";
 import EventAddCart from "./modules/EventAddCart.js";
 import ValidatorID from "./modules/ValidatorID.js";
 import Api from "./modules/Api.js";
-import AlertProduct from "./modules/AlertProduct.js";
 
 let validatorID = new ValidatorID();
 let urlProduct = validatorID.getUrlProduct();
