@@ -10,7 +10,7 @@ export default class ValidatorDataEventCart {
     }
 
     isQuantityValid() {
-        return this.data <= 100;
+        return this.data > 0 && this.data <= 100;
     }
 
     validColor(value) {

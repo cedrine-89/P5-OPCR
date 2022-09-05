@@ -22,12 +22,16 @@ export default class AddCartLocalStorage {
         let cartData = JSON.parse(localStorage.getItem(this.nameObjectStorage));
         let dataJson = [data];
 
+        // IF cartData in localStorage
         if (cartData) {
+            // Find Item id exist
             if (cartData.find(item => item.id === data.id)) {
+                // Map for modify total product
                 cartData = cartData.map(item => {
                     if (item.id === data.id) {
                         let quantity;
 
+                        // If update cart no addition
                         if (this.updateCart) {
                             quantity = data.total;
                         } else {
@@ -43,8 +47,10 @@ export default class AddCartLocalStorage {
                     return item;
                 })
             } else {
+                // If no exist Push un table for localStorage
                 cartData.push(data);
             }
+            // Modify cartData after update
             dataJson = cartData;
         }
         localStorage.setItem(this.nameObjectStorage, JSON.stringify(dataJson));

@@ -1,3 +1,5 @@
+import MoneyChain from "./MoneyChain.js";
+
 export default class CartTotal {
     constructor() {
         this.totalQuantity = 0
@@ -12,6 +14,6 @@ export default class CartTotal {
         this.totalPrice += total * price;
 
         totalQuantityDOM.innerText = this.totalQuantity;
-        totalPriceDOM.innerText = this.totalPrice;
+        totalPriceDOM.innerText = MoneyChain.convert(this.totalPrice);
     }
 }
