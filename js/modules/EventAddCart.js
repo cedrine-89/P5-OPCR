@@ -22,7 +22,7 @@ export default class EventAddCart {
                 if (validQuantity) {
                     if (validColor) {
                         new AddCartLocalStorage(this.item._id, this.validatorData.data, validColor);
-                        //window.location.replace("cart.html");
+                        window.location.replace("cart.html");
                     } else {
                         new AlertProduct('Couleur Invalide !');
                     }
