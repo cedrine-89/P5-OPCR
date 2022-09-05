@@ -2,6 +2,7 @@ import Api from "./Api.js";
 import MoneyChain from "./MoneyChain.js";
 import EventCart from "./EventCart.js";
 import CartTotal from "./CartTotal.js";
+import CartEventDelete from "./CartEventDelete.js";
 
 export default class Cart {
     nameObjectStorage = 'Products';
@@ -26,7 +27,7 @@ export default class Cart {
         // Create Instance Cart Total
         const cartTotal = new CartTotal();
 
-        this.localStorage.forEach(async product => {
+        this.localStorage.forEach(product => {
             const [id, color] = product.id.split('-');
             const apiProduct = new Api();
 
@@ -122,6 +123,7 @@ export default class Cart {
         const pParagrapheDeleteItem = document.createElement('p');
         pParagrapheDeleteItem.setAttribute('class', 'deleteItem');
         pParagrapheDeleteItem.innerText = 'Supprimer';
+        CartEventDelete.eventDeleteProduct(pParagrapheDeleteItem);
 
         divCartItemContentSettingsDelete.appendChild(pParagrapheDeleteItem);
         divCartItemContentSettings.appendChild(divCartItemContentSettingsDelete);
