@@ -5,6 +5,9 @@ export default class ViewProductDetail {
      * @param { {} } item
      */
     constructor(item) {
+        // Change title page
+        document.title = item.name;
+
         this.createImgProduct(item.imageUrl, item.altTxt);
         this.createTitleProduct(item.name);
         this.createPriceProduct(item.price);
