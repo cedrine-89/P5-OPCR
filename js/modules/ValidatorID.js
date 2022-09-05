@@ -1,3 +1,6 @@
+/**
+ * ValidatorID and set UrlProduct for getUrlProduct
+ */
 export default class ValidatorID {
     urlApi = "http://192.168.1.11:3000/api/products";
     queryString = window.location.search;
@@ -17,7 +20,7 @@ export default class ValidatorID {
             this.id = this.urlParams.get('id');
             this.isValidID();
         } else {
-            window.location.replace("/html");
+            window.location.replace("/");
         }
     }
 
@@ -28,8 +31,7 @@ export default class ValidatorID {
         if (this.regexp.test(this.id)) {
             this.url = `${this.url}/${this.id}`;
         } else {
-            // TODO Gestion error
-            console.log('ID: Not Valid');
+            window.location.replace("/");
         }
     }
 

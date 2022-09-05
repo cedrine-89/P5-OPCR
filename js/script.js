@@ -9,3 +9,4 @@ api.getApi()
             new ViewProduct(product);
         }
     }).catch((e) => console.log("ProductsList indisponible", e));
+

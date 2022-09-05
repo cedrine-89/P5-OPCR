@@ -3,7 +3,7 @@ export default class Api {
     error = false;
 
     /**
-     *
+     * get API
      * @param { string|undefined } url
      * @returns { Promise<any> }
      */

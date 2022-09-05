@@ -5,12 +5,7 @@ export default class AddCart {
         this.itemID = itemID;
         this.itemTotal = parseInt(itemTotal);
         this.itemColor = itemColor;
-        this.localStorage = this.getLocalStorage();
         this.addLocalStorage();
-    }
-
-    getLocalStorage() {
-        return localStorage.getItem(this.nameObjectStorage);
     }
 
     addLocalStorage() {
@@ -20,33 +15,22 @@ export default class AddCart {
             total: this.itemTotal
         };
         // Object Cart Data
-        let cartData = JSON.parse(this.localStorage);
+        let cartData = JSON.parse(localStorage.getItem(this.nameObjectStorage));
+        let dataJson = [data];
 
-        if (cartData !== null) {
-            // Validator Data Exist
-            let validCartExist = false;
-
-            for (const cartD of cartData) {
-                // Destructuring Cart Data
-                const [id, color] = cartD.id.split('-');
-                // If Data Exist
-                if (id === this.itemID && color === this.itemColor) {
-                    cartD.total = parseInt(cartD.total) + this.itemTotal;
-                    validCartExist = true;
-                }
-            }
-
-            // Push Data No Exist
-            if (!validCartExist) {
+        if (cartData) {
+            if (cartData.find(item => item.id === data.id)) {
+                cartData = cartData.map(item => {
+                    if (item.id === data.id) {
+                        item.total += data.total
+                    }
+                    return item;
+                })
+            } else {
                 cartData.push(data);
             }
-
-            let dataJson = JSON.stringify(cartData);
-            localStorage.setItem(this.nameObjectStorage, dataJson);
-
-        } else {
-            let dataFormat = JSON.stringify([data]);
-            localStorage.setItem(this.nameObjectStorage, dataFormat);
+            dataJson = cartData;
         }
+        localStorage.setItem(this.nameObjectStorage, JSON.stringify(dataJson));
     }
 }
