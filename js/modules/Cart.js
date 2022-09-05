@@ -1,5 +1,6 @@
 import Api from "./Api.js";
 import MoneyChain from "./MoneyChain.js";
+import EventCart from "./EventCart.js";
 
 export default class Cart {
     nameObjectStorage = 'Products';
@@ -7,6 +8,9 @@ export default class Cart {
     html = document.querySelector('#cart__items');
 
     constructor() {
+        // Reset Cart for Update
+        this.html.innerHTML = '';
+
         this.localStorage = JSON.parse(localStorage.getItem(this.nameObjectStorage));
         if (this.localStorage) {
             this.viewCart();
@@ -96,6 +100,7 @@ export default class Cart {
         inputQuantity.setAttribute('min', '1');
         inputQuantity.setAttribute('max', '100');
         inputQuantity.setAttribute('value', total);
+        EventCart.inputModifyQuantity(id, color, inputQuantity);
 
         divCartItemContentSettingsQuantity.appendChild(pParagrapheQuantity);
         divCartItemContentSettingsQuantity.appendChild(inputQuantity);

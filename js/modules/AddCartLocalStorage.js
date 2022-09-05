@@ -4,10 +4,11 @@ import AlertProduct from "./AlertProduct.js";
 export default class AddCartLocalStorage {
     nameObjectStorage = 'Products';
 
-    constructor(itemID, itemTotal, itemColor) {
+    constructor(itemID, itemTotal, itemColor, updateCart = false) {
         this.itemID = itemID;
         this.itemTotal = parseInt(itemTotal);
         this.itemColor = itemColor;
+        this.updateCart = updateCart;
         this.addLocalStorage();
     }
 
@@ -25,7 +26,13 @@ export default class AddCartLocalStorage {
             if (cartData.find(item => item.id === data.id)) {
                 cartData = cartData.map(item => {
                     if (item.id === data.id) {
-                        const quantity = item.total + data.total;
+                        let quantity;
+
+                        if (this.updateCart) {
+                            quantity = data.total;
+                        } else {
+                            quantity = item.total + data.total;
+                        }
 
                         if (!this.validQuantity(quantity)) {
                             new AlertProduct('Quantité invalide !');
