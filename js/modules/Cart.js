@@ -78,8 +78,8 @@ export default class Cart {
 
         // Create Paragraphe Price
         const pPrice = document.createElement('p');
-        const totalPrice = MoneyChain.convert(apiProduct.price * total);
-        pPrice.innerText = String(totalPrice);
+        const totalPrice = MoneyChain.convert(apiProduct.price);
+        pPrice.innerText = `${totalPrice} X ${total} = ${MoneyChain.convert(apiProduct.price * total)}`;
 
         divCartItemContentDescription.appendChild(h2TitleProduct);
         divCartItemContentDescription.appendChild(pColor);
