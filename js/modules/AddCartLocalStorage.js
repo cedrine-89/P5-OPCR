@@ -1,3 +1,6 @@
+import ValidatorDataEventCart from "./ValidatorDataEventCart.js";
+import AlertProduct from "./AlertProduct.js";
+
 export default class AddCartLocalStorage {
     nameObjectStorage = 'Products';
 
@@ -22,7 +25,13 @@ export default class AddCartLocalStorage {
             if (cartData.find(item => item.id === data.id)) {
                 cartData = cartData.map(item => {
                     if (item.id === data.id) {
-                        item.total += data.total
+                        const quantity = item.total + data.total;
+
+                        if (!this.validQuantity(quantity)) {
+                            new AlertProduct('Quantité invalide !');
+                        } else {
+                            item.total = quantity;
+                        }
                     }
                     return item;
                 })
@@ -32,5 +41,9 @@ export default class AddCartLocalStorage {
             dataJson = cartData;
         }
         localStorage.setItem(this.nameObjectStorage, JSON.stringify(dataJson));
+    }
+
+    validQuantity(data) {
+        return new ValidatorDataEventCart(data).isQuantityValid();
     }
 }

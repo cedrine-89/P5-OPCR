@@ -10,8 +10,7 @@ export default class ValidatorDataEventCart {
     }
 
     isQuantityValid() {
-        this.regExp = new RegExp(/^([1-9][0-9]?|100)$/g);
-        return this.regExp.test(this.data);
+        return this.data <= 100;
     }
 
     validColor(value) {
