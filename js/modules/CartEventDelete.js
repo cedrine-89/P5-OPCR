@@ -1,4 +1,5 @@
 import DeleteProductLocalStorage from "./DeleteProductLocalStorage.js";
+import AlertValidation from "./AlertValidation.js";
 
 export default class CartEventDelete {
     static eventDeleteProduct(elementEvent) {
@@ -8,14 +9,10 @@ export default class CartEventDelete {
             let id = productDelete.getAttribute('data-id');
             let color = productDelete.getAttribute('data-color');
 
-            if (this.validDelete()) {
+            if (AlertValidation.valid("Voulez vous vraiment supprimer ce Kanapé !")) {
                 new DeleteProductLocalStorage(id, color);
                 productDelete.remove();
             }
         });
-    }
-
-    static validDelete() {
-        return confirm("Voulez vous vraiment supprimer ce Kanapé !");
     }
 }
