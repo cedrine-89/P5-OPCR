@@ -1,4 +1,4 @@
-export default class AddCart {
+export default class AddCartLocalStorage {
     nameObjectStorage = 'Products';
 
     constructor(itemID, itemTotal, itemColor) {

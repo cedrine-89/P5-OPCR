@@ -9,7 +9,6 @@ export default class AlertProduct {
         span.innerText = message;
         this.div.appendChild(br);
         this.div.appendChild(span);
-
         this.html.appendChild(this.div);
         this.hiddenAlert();
     }

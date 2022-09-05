@@ -1,5 +1,5 @@
 import ValidatorDataEventCart from "./ValidatorDataEventCart.js";
-import AddCart from "./AddCart.js";
+import AddCartLocalStorage from "./AddCartLocalStorage.js";
 import AlertProduct from "./AlertProduct.js";
 
 export default class EventAddCart {
@@ -21,7 +21,8 @@ export default class EventAddCart {
             if (validNumber) {
                 if (validQuantity) {
                     if (validColor) {
-                        new AddCart(this.item._id, this.validatorData.data, validColor);
+                        new AddCartLocalStorage(this.item._id, this.validatorData.data, validColor);
+                        window.location.replace("cart.html");
                     } else {
                         new AlertProduct('Couleur Invalide !');
                     }
