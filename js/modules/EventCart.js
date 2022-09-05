@@ -6,6 +6,7 @@ export default class EventCart {
         elementEvent.addEventListener('change', (e) => {
             new AddCartLocalStorage(id, e.target.value, color, true);
             new Cart();
+            const totalProduct = document.querySelector('#quantity');
         }, false);
     }
 }

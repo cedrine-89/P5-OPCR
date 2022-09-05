@@ -1,6 +1,7 @@
 import Api from "./Api.js";
 import MoneyChain from "./MoneyChain.js";
 import EventCart from "./EventCart.js";
+import CartTotal from "./CartTotal.js";
 
 export default class Cart {
     nameObjectStorage = 'Products';
@@ -22,6 +23,9 @@ export default class Cart {
     }
 
     viewCart() {
+        // Create Instance Cart Total
+        const cartTotal = new CartTotal();
+
         this.localStorage.forEach(async product => {
             const [id, color] = product.id.split('-');
             const apiProduct = new Api();
@@ -29,8 +33,11 @@ export default class Cart {
             apiProduct.getApi(this.urlProducts + id)
                 .then(data => {
                     this.viewArticleProduct(id, color, product.total ,apiProduct.data);
+
+                    cartTotal.addProducts(product.total, apiProduct.data.price);
+
                 })
-                .catch(e => console.error(e))
+                .catch(e => console.error(e));
         });
     }
 
@@ -90,6 +97,7 @@ export default class Cart {
 
         // Create Paragraphe Quantity
         const pParagrapheQuantity = document.createElement('p');
+        pParagrapheQuantity.setAttribute('id','quantity');
         pParagrapheQuantity.innerText = total;
 
         // Create Input Quantity
