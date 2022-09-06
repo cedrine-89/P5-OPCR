@@ -27,9 +27,6 @@ export default class Cart {
      * View Product in Cart
      */
     viewCart() {
-        // Create Instance Cart Total
-        const cartTotal = new CartTotal();
-
         this.localStorage.forEach(product => {
             const [id, color] = product.id.split('-');
             const apiProduct = new Api();
@@ -43,6 +40,8 @@ export default class Cart {
                 })
                 .catch(e => console.error(e));
         });
+        // Create Instance Cart Total
+        const cartTotal = new CartTotal();
     }
 
     /**
