@@ -67,7 +67,7 @@ export default class ViewProductAll {
     createParagraphItem(description) {
         let pItem = document.createElement("p");
         pItem.classList.add("productDescription");
-        pItem.innerText = description;
+        pItem.innerText = `${description.substring(50, -1)}...`;
         return pItem;
     }
 }
