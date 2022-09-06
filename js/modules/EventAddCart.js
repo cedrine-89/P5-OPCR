@@ -7,11 +7,18 @@ export default class EventAddCart {
     addToCart = document.querySelector('#addToCart');
     itemQuantity = document.querySelector('#itemQuantity');
 
+    /**
+     * Event add Product in Cart
+     * @param { {} } item
+     */
     constructor(item) {
         this.item = item;
         this.isDataValid();
     }
 
+    /**
+     * Valid data event Color, Quantity, IsNumber
+     */
     isDataValid() {
         this.itemQuantity = document.querySelector('#itemQuantity');
         this.addToCart.addEventListener('click', () => {
@@ -38,6 +45,10 @@ export default class EventAddCart {
         });
     }
 
+    /**
+     *
+     * @returns { String|boolean }
+     */
     colorProduct() {
         this.colors = document.querySelector('#colors');
 

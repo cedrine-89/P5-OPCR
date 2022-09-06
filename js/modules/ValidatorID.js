@@ -6,6 +6,11 @@ export default class ValidatorID {
     queryString = window.location.search;
     regexp = new RegExp(/^\w*$/);
 
+    /**
+     * Validator ID if in URL
+     * Validator ID not include spécial char
+     * Else redirect to Home
+     */
     constructor() {
         this.urlParams = new URLSearchParams(this.queryString);
         this.init();

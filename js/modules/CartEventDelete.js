@@ -2,6 +2,10 @@ import DeleteProductLocalStorage from "./DeleteProductLocalStorage.js";
 import AlertValidation from "./AlertValidation.js";
 
 export default class CartEventDelete {
+    /**
+     *
+     * @param { HTMLDocument } elementEvent
+     */
     static eventDeleteProduct(elementEvent) {
         elementEvent.addEventListener('click', (e) => {
 

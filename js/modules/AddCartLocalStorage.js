@@ -38,6 +38,7 @@ export default class AddCartLocalStorage {
                             quantity = item.total + data.total;
                         }
 
+                        // Valid total <= 100
                         if (!this.validQuantity(quantity)) {
                             new AlertProduct('Quantité invalide !');
                         } else {

@@ -1,4 +1,8 @@
 export default class AlertProduct {
+    /**
+     * View error in DOM
+     * @param { String } message
+     */
     constructor(message) {
         this.html = document.querySelector(".item__content__settings__quantity");
         this.div = document.createElement('div');

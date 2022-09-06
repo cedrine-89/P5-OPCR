@@ -1,7 +1,7 @@
 /**
  * Create View Product Home
  */
-export default class ViewProduct {
+export default class ViewProductAll {
     itemDom = document.getElementById("items");
 
     /**

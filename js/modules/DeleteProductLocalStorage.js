@@ -4,6 +4,11 @@ import CartTotal from "./CartTotal.js";
 export default class DeleteProductLocalStorage {
     nameObjectStorage = 'Products';
 
+    /**
+     * Delete product in localStorage
+     * @param { String } id
+     * @param { String } color
+     */
     constructor(id, color) {
         this.localStorage = JSON.parse(localStorage.getItem(this.nameObjectStorage));
         const idFormat = `${id}-${color}`;

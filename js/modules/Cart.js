@@ -23,6 +23,9 @@ export default class Cart {
         }
     }
 
+    /**
+     * View Product in Cart
+     */
     viewCart() {
         // Create Instance Cart Total
         const cartTotal = new CartTotal();
@@ -33,7 +36,7 @@ export default class Cart {
 
             apiProduct.getApi(this.urlProducts + id)
                 .then(data => {
-                    this.viewArticleProduct(id, color, product.total ,apiProduct.data);
+                    this.createArticleProduct(id, color, product.total ,apiProduct.data);
 
                     cartTotal.addProducts(product.total, apiProduct.data.price);
 
@@ -42,7 +45,14 @@ export default class Cart {
         });
     }
 
-    viewArticleProduct(id, color, total, apiProduct) {
+    /**
+     * Create Article product in Cart
+     * @param { String } id
+     * @param { String } color
+     * @param { Number } total
+     * @param { {} } apiProduct
+     */
+    createArticleProduct(id, color, total, apiProduct) {
         // Create Article General
         const article = document.createElement('article');
         article.setAttribute('class', 'cart__item');

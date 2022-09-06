@@ -2,6 +2,9 @@ export default class FormSubmitCommand {
     urlOrder = "http://192.168.1.11:3000/api/products/order";
     nameObjectStorage = 'Products';
 
+    /**
+     * Create event submit formulaire and redirect URL with param orderId
+     */
     constructor() {
         this.form = document.querySelector('#submitCommand');
 
