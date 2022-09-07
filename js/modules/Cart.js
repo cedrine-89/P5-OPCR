@@ -8,18 +8,20 @@ export default class Cart {
     nameObjectStorage = 'Products';
     urlProducts = "http://192.168.1.11:3000/api/products/";
     html = document.querySelector('#cart__items');
+    form = document.querySelector('.cart');
+    cartAndFormContainer = document.querySelector('#cartAndFormContainer');
 
     constructor() {
-        // Reset Cart for Update
-        this.html.innerHTML = '';
-
         this.localStorage = JSON.parse(localStorage.getItem(this.nameObjectStorage));
         if (this.localStorage) {
+            // Reset Cart for Update
+            this.html.innerHTML = '';
             this.viewCart();
         } else {
+            this.form.innerHTML = '';
             const article = document.createElement('article');
             article.innerText = 'Votre panier est vide !';
-            this.html.appendChild(article);
+            this.cartAndFormContainer.appendChild(article);
         }
     }
 
@@ -27,21 +29,22 @@ export default class Cart {
      * View Product in Cart
      */
     viewCart() {
+        // Create Instance Cart Total
+        const cartTotal = new CartTotal();
+
         this.localStorage.forEach(product => {
             const [id, color] = product.id.split('-');
             const apiProduct = new Api();
 
             apiProduct.getApi(this.urlProducts + id)
                 .then(data => {
-                    this.createArticleProduct(id, color, product.total ,apiProduct.data);
-
+                    this.makeTemplate(id, color, product.total ,apiProduct.data);
                     cartTotal.addProducts(product.total, apiProduct.data.price);
+                    new EventCart();
 
                 })
                 .catch(e => console.error(e));
         });
-        // Create Instance Cart Total
-        const cartTotal = new CartTotal();
     }
 
     /**
@@ -51,93 +54,28 @@ export default class Cart {
      * @param { Number } total
      * @param { {} } apiProduct
      */
-    createArticleProduct(id, color, total, apiProduct) {
-        // Create Article General
-        const article = document.createElement('article');
-        article.setAttribute('class', 'cart__item');
-        article.setAttribute('data-id', id);
-        article.setAttribute('data-color', color);
-
-        // Create DIV Img
-        const divImg = document.createElement('div');
-        divImg.setAttribute('class', 'cart__item__img');
-        // Create IMG
-        const img = document.createElement('img');
-        img.setAttribute('src', apiProduct.imageUrl);
-        img.setAttribute('alt', apiProduct.altTxt);
-
-        divImg.appendChild(img);
-        article.appendChild(divImg);
-
-        // Create DIV Cart Item Content
-        const divCartItemContent = document.createElement('div');
-        divCartItemContent.setAttribute('class', 'cart__item__content');
-
-        // Create DIV Cart Item Content Description
-        const divCartItemContentDescription = document.createElement('div');
-        divCartItemContentDescription.setAttribute('class', 'cart__item__content__description');
-
-        // Create Title Product
-        const h2TitleProduct = document.createElement('h2');
-        h2TitleProduct.innerText = apiProduct.name;
-
-        // Create Paragraphe Color
-        const pColor = document.createElement('p');
-        pColor.innerText = color;
-
-        // Create Paragraphe Price
-        const pPrice = document.createElement('p');
-        const totalPrice = MoneyChain.convert(apiProduct.price);
-        pPrice.innerText = `${totalPrice} X ${total} = ${MoneyChain.convert(apiProduct.price * total)}`;
-
-        divCartItemContentDescription.appendChild(h2TitleProduct);
-        divCartItemContentDescription.appendChild(pColor);
-        divCartItemContentDescription.appendChild(pPrice);
-        divCartItemContent.appendChild(divCartItemContentDescription);
-
-        article.appendChild(divCartItemContent);
-
-        // Create DIV Cart Item Content Settings
-        const divCartItemContentSettings = document.createElement('div');
-        divCartItemContentSettings.setAttribute('class', 'cart__item__content__settings');
-
-        // Create DIV Cart Item Content Settings Quantity
-        const divCartItemContentSettingsQuantity = document.createElement('div');
-        divCartItemContentSettingsQuantity.setAttribute('class', 'cart__item__content__settings__quantity');
-
-        // Create Paragraphe Quantity
-        const pParagrapheQuantity = document.createElement('p');
-        pParagrapheQuantity.setAttribute('id','quantity');
-        pParagrapheQuantity.innerText = total;
-
-        // Create Input Quantity
-        const inputQuantity = document.createElement('input');
-        inputQuantity.setAttribute('type', 'number');
-        inputQuantity.setAttribute('class', 'itemQuantity');
-        inputQuantity.setAttribute('name', 'itemQuantity');
-        inputQuantity.setAttribute('min', '1');
-        inputQuantity.setAttribute('max', '100');
-        inputQuantity.setAttribute('value', total);
-        EventCart.inputModifyQuantity(id, color, inputQuantity);
-
-        divCartItemContentSettingsQuantity.appendChild(pParagrapheQuantity);
-        divCartItemContentSettingsQuantity.appendChild(inputQuantity);
-        divCartItemContentSettings.appendChild(divCartItemContentSettingsQuantity);
-
-        // Create DIV Cart Item Content Settings Delete
-        const divCartItemContentSettingsDelete = document.createElement('div');
-        divCartItemContentSettingsDelete.setAttribute('class', 'cart__item__content__settings__delete');
-
-        // Create Paragraphe Delete Item
-        const pParagrapheDeleteItem = document.createElement('p');
-        pParagrapheDeleteItem.setAttribute('class', 'deleteItem');
-        pParagrapheDeleteItem.innerText = 'Supprimer';
-        CartEventDelete.eventDeleteProduct(pParagrapheDeleteItem);
-
-        divCartItemContentSettingsDelete.appendChild(pParagrapheDeleteItem);
-        divCartItemContentSettings.appendChild(divCartItemContentSettingsDelete);
-
-        article.appendChild(divCartItemContentSettings);
-        this.html.appendChild(article);
+    makeTemplate(id, color, total, apiProduct) {
+        this.html.innerHTML += `
+            <article class="cart__item" data-id="${id}" data-color="${color}">
+                <div class="cart__item__img">
+                    <img src="${apiProduct.imageUrl}" alt="${apiProduct.altTxt}">
+                </div>
+                <div class="cart__item__content">
+                    <div class="cart__item__content__description">
+                        <h2>${apiProduct.name}</h2>
+                        <p>${color}</p>
+                        <p>${MoneyChain.convert(apiProduct.price)} X ${total} = ${MoneyChain.convert(apiProduct.price * total)}</p>
+                    </div>
+                    <div class="cart__item__content__settings">
+                        <div class="cart__item__content__settings__quantity">
+                            <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${total}">
+                        </div>
+                        <div class="cart__item__content__settings__delete">
+                            <p class="deleteItem">Supprimer</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        `
     }
 }

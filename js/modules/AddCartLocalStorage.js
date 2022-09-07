@@ -41,7 +41,6 @@ export default class AddCartLocalStorage {
 
                         // Valid total <= 100
                         if (!this.validQuantity(quantity)) {
-                            console.log('Here')
                             new AlertProduct(`Vous avez déjà ${item.total} Kanapé de couleur ${color} dans votre panier !<br>La quantité maximale est de 100 unités.`);
                         } else {
                             item.total = quantity;

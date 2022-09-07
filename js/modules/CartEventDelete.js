@@ -17,6 +17,6 @@ export default class CartEventDelete {
                 new DeleteProductLocalStorage(id, color);
                 productDelete.remove();
             }
-        });
+        }, false);
     }
 }
