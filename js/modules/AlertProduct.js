@@ -10,7 +10,7 @@ export default class AlertProduct {
         const span = document.createElement('span');
 
         span.setAttribute('style', `color:#FFF;`);
-        span.innerText = message;
+        span.innerHTML = message;
         this.div.appendChild(br);
         this.div.appendChild(span);
         this.html.appendChild(this.div);
