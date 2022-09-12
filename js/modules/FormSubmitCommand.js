@@ -1,3 +1,5 @@
+import LocalStorageDelete from "./LocalStorageDelete.js";
+
 export default class FormSubmitCommand {
     urlOrder = "http://192.168.1.11:3000/api/products/order";
     nameObjectStorage = 'Products';
@@ -112,7 +114,7 @@ export default class FormSubmitCommand {
 
                 const getPostResponse = await fetch(this.urlOrder, optionsPost);
                 const response = await getPostResponse.json();
-
+                new LocalStorageDelete();
                 window.location.replace(`confirmation.html?id=${response.orderId}`);
             }
         });
