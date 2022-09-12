@@ -1,6 +1,7 @@
 export default class FormSubmitCommand {
     urlOrder = "http://192.168.1.11:3000/api/products/order";
     nameObjectStorage = 'Products';
+
     firstNameErrorMsg = document.querySelector('#firstNameErrorMsg');
     lastNameErrorMsg = document.querySelector('#lastNameErrorMsg');
     addressErrorMsg = document.querySelector('#addressErrorMsg');
@@ -33,13 +34,14 @@ export default class FormSubmitCommand {
 
             });
 
+            // Get value input form
             const firstName = document.querySelector('#firstName').value;
             const lastName = document.querySelector('#lastName').value;
             const address = document.querySelector('#address').value;
             const city = document.querySelector('#city').value;
             const email = document.querySelector('#email').value;
 
-
+            // Validator input conforme
             if (this.regExpString.test(firstName)) {
                 this.firstNameErrorMsg.innerText = 'Erreur pas de chiffre dans votre Prénom';
                 this.regExpString = new RegExp(/\d+/g);
@@ -90,11 +92,11 @@ export default class FormSubmitCommand {
             if (!this.error) {
                 const bodyData = {
                     contact: {
-                        firstName: document.querySelector('#firstName').value,
-                        lastName: document.querySelector('#lastName').value,
-                        address: document.querySelector('#address').value,
-                        city: document.querySelector('#city').value,
-                        email: document.querySelector('#email').value
+                        firstName: firstName,
+                        lastName: lastName,
+                        address: address,
+                        city: city,
+                        email: email
                     },
                     products: idProductForOrder
                 }

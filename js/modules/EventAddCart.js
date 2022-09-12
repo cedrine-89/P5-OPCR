@@ -29,6 +29,7 @@ export default class EventAddCart {
                 if (validQuantity) {
                     if (validColor) {
                         const addCartLocalStorage = new AddCartLocalStorage(this.item._id, this.validatorData.data, validColor);
+                        // Validator Total product in cart + product add
                         if (!addCartLocalStorage.error) {
                             new AlertProduct('Produit ajouter à votre panier.');
                         }

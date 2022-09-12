@@ -1,7 +1,7 @@
 import Api from "./Api.js";
 import MoneyChain from "./MoneyChain.js";
-import EventCartProductUpdate from "./EventCart.js";
 import CartTotal from "./CartTotal.js";
+import EventCartProductUpdate from "./EventCartProductUpdate.js";
 import EventCartProductDelete from "./EventCartProductDelete.js";
 
 export default class Cart {
@@ -13,11 +13,13 @@ export default class Cart {
 
     constructor() {
         this.localStorage = JSON.parse(localStorage.getItem(this.nameObjectStorage));
+
         if (this.localStorage) {
             // Reset Cart for Update
             this.html.innerHTML = '';
             this.viewCart();
         } else {
+            // View alert empty cart and Remove Form
             this.form.innerHTML = '';
             const article = document.createElement('article');
             article.innerText = 'Votre panier est vide !';
@@ -52,7 +54,7 @@ export default class Cart {
     }
 
     /**
-     * Create Article product in Cart
+     * Create Template Article for product in Cart
      * @param { String } id
      * @param { String } color
      * @param { Number } total

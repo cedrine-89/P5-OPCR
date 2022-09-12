@@ -4,7 +4,7 @@ export default class Api {
 
     /**
      * get API
-     * @param { string|undefined } url
+     * @param { String|undefined } url
      * @returns { Promise<any> }
      */
     getApi(url = undefined) {
@@ -12,11 +12,7 @@ export default class Api {
             // get response to json
             .then(response => response.json())
             // get object json
-            .then(response => {
-                this.data = response;
-            })
-            .catch(e => {
-                this.error = `Error: ${e}`;
-            });
+            .then(response => this.data = response)
+            .catch(e => this.error = `Error: ${e}`);
     }
 }

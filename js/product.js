@@ -12,6 +12,4 @@ api.getApi(urlProduct)
         new EventAddCart(api.data);
         new ViewProductDetail(api.data);
     })
-    .catch(e => {
-        window.location.replace("/");
-    })
+    .catch(e => window.location.replace("/"))
