@@ -5,6 +5,13 @@ export default class AddCartLocalStorage {
     nameObjectStorage = 'Products';
     error = false;
 
+    /**
+     *
+     * @param { String } itemID
+     * @param { Number } itemTotal
+     * @param { String } itemColor
+     * @param { Boolean } updateCart
+     */
     constructor(itemID, itemTotal, itemColor, updateCart = false) {
         this.itemID = itemID;
         this.itemTotal = parseInt(itemTotal);
@@ -13,6 +20,9 @@ export default class AddCartLocalStorage {
         this.addLocalStorage();
     }
 
+    /**
+     * Set or Update LocalStorage
+     */
     addLocalStorage() {
         // Object new data
         let data = {
@@ -61,6 +71,11 @@ export default class AddCartLocalStorage {
         localStorage.setItem(this.nameObjectStorage, JSON.stringify(dataJson));
     }
 
+    /**
+     * Validator Quantity
+     * @param data
+     * @returns { Boolean }
+     */
     validQuantity(data) {
         return new ValidatorDataEventCart(data).isQuantityValid();
     }

@@ -24,7 +24,9 @@ export default class DeleteProductLocalStorage {
 
         localStorage.removeItem(this.nameObjectStorage);
         localStorage.setItem(this.nameObjectStorage, JSON.stringify(newCart));
+        // New View Cart after modify
         new Cart();
+        // New View Total Cart after modify
         new CartTotal();
     }
 }
