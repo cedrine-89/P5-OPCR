@@ -3,6 +3,7 @@ import AlertProduct from "./AlertProduct.js";
 
 export default class AddCartLocalStorage {
     nameObjectStorage = 'Products';
+    error = false;
 
     constructor(itemID, itemTotal, itemColor, updateCart = false) {
         this.itemID = itemID;
@@ -42,7 +43,9 @@ export default class AddCartLocalStorage {
                         // Valid total <= 100
                         if (!this.validQuantity(quantity)) {
                             new AlertProduct(`Vous avez déjà ${item.total} Kanapé de couleur ${color} dans votre panier !<br>La quantité maximale est de 100 unités.`);
+                            this.error = true;
                         } else {
+                            this.error = false;
                             item.total = quantity;
                         }
                     }

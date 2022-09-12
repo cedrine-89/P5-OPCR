@@ -1,7 +1,7 @@
 import AddCartLocalStorage from "./AddCartLocalStorage.js";
 import Cart from "./Cart.js";
 
-export default class EventCart {
+export default class EventCartProductUpdate {
     /**
      *
      */

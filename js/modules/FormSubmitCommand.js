@@ -12,8 +12,6 @@ export default class FormSubmitCommand {
     regExpCity = new RegExp(/[a-zA-Z]+/g);
     regExpEmail = new RegExp(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/);
 
-    error = false;
-
     /**
      * Create event submit formulaire and redirect URL with param orderId
      */
@@ -46,6 +44,7 @@ export default class FormSubmitCommand {
                 this.firstNameErrorMsg.innerText = 'Erreur pas de chiffre dans votre Prénom';
                 this.regExpString = new RegExp(/\d+/g);
                 this.error = true;
+                return false;
             } else {
                 this.firstNameErrorMsg.innerText = '';
                 this.error = false;
@@ -55,6 +54,7 @@ export default class FormSubmitCommand {
                 this.lastNameErrorMsg.innerText = 'Erreur pas de chiffre dans votre Nom';
                 this.regExpString = new RegExp(/\d+/g);
                 this.error = true;
+                return false;
             } else {
                 this.lastNameErrorMsg.innerText = '';
                 this.error = false;
@@ -63,17 +63,19 @@ export default class FormSubmitCommand {
             if (this.regExpAddress.test(address)) {
                 this.addressErrorMsg.innerText = 'Erreur votre Adresse ne doit pas commencer par un espace';
                 this.error = true;
+                return false;
             } else {
                 this.addressErrorMsg.innerText = '';
                 this.error = false;
             }
 
-            if (this.regExpCity.test(city)) {
-                this.cityErrorMsg.innerText = '';
-                this.error = false;
-            } else {
+            if (city === '') {
                 this.cityErrorMsg.innerText = 'Erreur veuillez entrer que des lettres pour votre Ville';
                 this.error = true;
+                return false;
+            } else {
+                this.cityErrorMsg.innerText = '';
+                this.error = false;
             }
 
             if (this.regExpEmail.test(email)) {
@@ -82,6 +84,7 @@ export default class FormSubmitCommand {
             } else {
                 this.emailErrorMsg.innerText = 'Erreur l\'adresse email est invalide !';
                 this.error = true;
+                return false;
             }
 
             if (!this.error) {

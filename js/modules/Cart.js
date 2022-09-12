@@ -1,8 +1,8 @@
 import Api from "./Api.js";
 import MoneyChain from "./MoneyChain.js";
-import EventCart from "./EventCart.js";
+import EventCartProductUpdate from "./EventCart.js";
 import CartTotal from "./CartTotal.js";
-import CartEventDelete from "./CartEventDelete.js";
+import EventCartProductDelete from "./EventCartProductDelete.js";
 
 export default class Cart {
     nameObjectStorage = 'Products';
@@ -40,10 +40,14 @@ export default class Cart {
                 .then(data => {
                     this.makeTemplate(id, color, product.total ,apiProduct.data);
                     cartTotal.addProducts(product.total, apiProduct.data.price);
-                    new EventCart();
+                    // Event Input Increment Decrement
+                    new EventCartProductUpdate();
+                    // Event Button Delete product
+                    new EventCartProductDelete(product);
 
                 })
                 .catch(e => console.error(e));
+
         });
     }
 
