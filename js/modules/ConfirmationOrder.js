@@ -10,6 +10,8 @@ export default class ConfirmationOrder {
 
         if (this.urlParams.has('id')) {
             this.orderId.innerText = this.urlParams.get('id');
+        } else {
+            window.location.replace(`/`);
         }
     }
 }
