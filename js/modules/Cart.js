@@ -33,6 +33,10 @@ export default class Cart {
     viewCart() {
         // Create Instance Cart Total
         const cartTotal = new CartTotal();
+        // Sort Cart
+        this.localStorage = this.localStorage.sort(this.compare);
+        // TODO Pourquoi le listing ne suit pas l'ordre
+        console.log(this.localStorage);
 
         this.localStorage.forEach(product => {
             const [id, color] = product.id.split('-');
@@ -83,5 +87,20 @@ export default class Cart {
                 </div>
             </article>
         `
+    }
+
+    /**
+     * Sort Cart with ID
+     * @param a
+     * @param b
+     * @returns { Number }
+     */
+    compare(a, b) {
+        if (a.id.toUpperCase() > b.id.toUpperCase()) {
+            return -1;
+        } else if (a.id.toUpperCase() > b.id.toUpperCase()) {
+            return -1;
+        }
+        return 0;
     }
 }
