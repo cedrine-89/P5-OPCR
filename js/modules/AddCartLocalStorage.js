@@ -8,7 +8,7 @@ export default class AddCartLocalStorage {
     /**
      *
      * @param { String } itemID
-     * @param { Number } itemTotal
+     * @param { Number|String } itemTotal
      * @param { String } itemColor
      * @param { Boolean } updateCart
      */
