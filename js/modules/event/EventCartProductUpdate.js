@@ -1,6 +1,6 @@
-import AddCartLocalStorage from "./AddCartLocalStorage.js";
-import Cart from "./Cart.js";
-import AlertProduct from "./AlertProduct.js";
+import AddCartLocalStorage from "./../local_storage/AddCartLocalStorage.js";
+import Cart from "./../cart/Cart.js";
+import AlertProduct from "./../alert/AlertProduct.js";
 
 export default class EventCartProductUpdate {
     constructor() {

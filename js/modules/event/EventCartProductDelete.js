@@ -1,4 +1,4 @@
-import DeleteProductLocalStorage from "./DeleteProductLocalStorage.js";
+import DeleteProductLocalStorage from "./../local_storage/DeleteProductLocalStorage.js";
 
 export default class EventCartProductDelete {
     constructor() {

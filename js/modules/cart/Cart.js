@@ -1,8 +1,8 @@
-import Api from "./Api.js";
-import MoneyChain from "./MoneyChain.js";
-import CartTotal from "./CartTotal.js";
-import EventCartProductUpdate from "./EventCartProductUpdate.js";
-import EventCartProductDelete from "./EventCartProductDelete.js";
+import Api from "./../api/Api.js";
+import MoneyChain from "./../utils/convert_currency/MoneyChain.js";
+import CartTotal from "./../cart/CartTotal.js";
+import EventCartProductUpdate from "./../event/EventCartProductUpdate.js";
+import EventCartProductDelete from "./../event/EventCartProductDelete.js";
 
 export default class Cart {
     nameObjectStorage = 'Products';

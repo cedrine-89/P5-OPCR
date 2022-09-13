@@ -1,5 +1,5 @@
-import Cart from "./Cart.js";
-import CartTotal from "./CartTotal.js";
+import Cart from "./../cart/Cart.js";
+import CartTotal from "./../cart/CartTotal.js";
 
 export default class DeleteProductLocalStorage {
     nameObjectStorage = 'Products';

@@ -1,6 +1,6 @@
-import ValidatorDataEventCart from "./ValidatorDataEventCart.js";
-import AddCartLocalStorage from "./AddCartLocalStorage.js";
-import AlertProduct from "./AlertProduct.js";
+import ValidatorDataEventCart from "./../validator/ValidatorDataEventCart.js";
+import AddCartLocalStorage from "./../local_storage/AddCartLocalStorage.js";
+import AlertProduct from "./../alert/AlertProduct.js";
 
 export default class EventAddCart {
     addToCart = document.querySelector('#addToCart');

@@ -1,5 +1,5 @@
-import ViewProductAll from "./modules/ViewProductAll.js";
-import Api from "./modules/Api.js";
+import ViewProductAll from "./modules/view/ViewProductAll.js";
+import Api from "./modules/api/Api.js";
 
 const items = document.querySelector('#items');
 let api = new Api();

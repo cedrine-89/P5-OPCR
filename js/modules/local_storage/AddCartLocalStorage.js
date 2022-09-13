@@ -1,5 +1,4 @@
-import ValidatorDataEventCart from "./ValidatorDataEventCart.js";
-import AlertProduct from "./AlertProduct.js";
+import ValidatorDataEventCart from "./../validator/ValidatorDataEventCart.js";
 
 export default class AddCartLocalStorage {
     nameObjectStorage = 'Products';

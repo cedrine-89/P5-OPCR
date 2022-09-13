@@ -1,3 +1,3 @@
-import ConfirmationOrder from "./modules/ConfirmationOrder.js";
+import ConfirmationOrder from "./modules/cart/ConfirmationOrder.js";
 
 new ConfirmationOrder();
