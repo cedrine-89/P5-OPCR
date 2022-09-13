@@ -65,6 +65,13 @@ export default class Cart {
      * @param { {} } apiProduct
      */
     makeTemplate(id, color, total, apiProduct) {
+        let totalFormat;
+        if (total === 1) {
+            totalFormat = `${MoneyChain.convert(apiProduct.price * total)}`;
+        } else {
+            totalFormat = `${MoneyChain.convert(apiProduct.price)} X ${total} = ${MoneyChain.convert(apiProduct.price * total)}`;
+        }
+
         this.html.innerHTML += `
             <article class="cart__item" data-id="${id}" data-color="${color}">
                 <div class="cart__item__img">
@@ -74,7 +81,7 @@ export default class Cart {
                     <div class="cart__item__content__description">
                         <h2>${apiProduct.name}</h2>
                         <p>${color}</p>
-                        <p>${MoneyChain.convert(apiProduct.price)} X ${total} = ${MoneyChain.convert(apiProduct.price * total)}</p>
+                        <p>${totalFormat}</p>
                     </div>
                     <div class="cart__item__content__settings">
                         <div class="cart__item__content__settings__quantity">
