@@ -1,10 +1,11 @@
 export default class AlertProduct {
     /**
      * View error in DOM
+     * @param { Element } selector
      * @param { String } message
      */
-    constructor(message) {
-        this.html = document.querySelector(".item__content__settings__quantity");
+    constructor(selector, message) {
+        this.html = selector;
         this.div = document.createElement('div');
         const br = document.createElement('br');
         const span = document.createElement('span');

@@ -5,7 +5,7 @@ import AlertProduct from "./AlertProduct.js";
 export default class EventAddCart {
     addToCart = document.querySelector('#addToCart');
     itemQuantity = document.querySelector('#itemQuantity');
-
+    htmlErrorDOM = document.querySelector(".item__content__settings__quantity");
     /**
      * Event add Product in Cart
      * @param { {} } item
@@ -31,16 +31,18 @@ export default class EventAddCart {
                         const addCartLocalStorage = new AddCartLocalStorage(this.item._id, this.validatorData.data, validColor);
                         // Validator Total product in cart + product add
                         if (!addCartLocalStorage.error) {
-                            new AlertProduct('Produit ajouter à votre panier.');
+                            new AlertProduct(this.htmlErrorDOM,'Produit ajouter à votre panier.');
+                        } else {
+                            new AlertProduct(this.htmlErrorDOM,`Vous avez déjà ${addCartLocalStorage.error} Kanapé de ce même modèle & couleur dans votre panier !<br>La quantité maximale est de 100 unités.`);
                         }
                     } else {
-                        new AlertProduct('Couleur Invalide !');
+                        new AlertProduct(this.htmlErrorDOM,'Couleur Invalide !');
                     }
                 } else {
-                    new AlertProduct('Quantité invalide !');
+                    new AlertProduct(this.htmlErrorDOM,'Quantité invalide !');
                 }
             } else {
-                new AlertProduct('Erreur: veuillez soumettre un nombre !');
+                new AlertProduct(this.htmlErrorDOM,'Erreur: veuillez soumettre un nombre !');
             }
         });
     }

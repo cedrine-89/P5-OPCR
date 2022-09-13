@@ -1,5 +1,6 @@
 import AddCartLocalStorage from "./AddCartLocalStorage.js";
 import Cart from "./Cart.js";
+import AlertProduct from "./AlertProduct.js";
 
 export default class EventCartProductUpdate {
     constructor() {
@@ -11,8 +12,12 @@ export default class EventCartProductUpdate {
                 const id = node.getAttribute('data-id');
                 const color = node.getAttribute('data-color');
 
-                new AddCartLocalStorage(id, e.target.value, color, true);
-                new Cart();
+                const addCartLocalStorage = new AddCartLocalStorage(id, e.target.value, color, true);
+                if (addCartLocalStorage.error) {
+                    new AlertProduct(e.target.parentNode, 'Quantité invalide ! !');
+                } else {
+                    new Cart();
+                }
             }, false);
         });
     }
