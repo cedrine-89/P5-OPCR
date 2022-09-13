@@ -63,11 +63,9 @@ export default class Cart {
      * @param { {} } apiProduct
      */
     makeTemplate(id, color, total, apiProduct) {
-        let totalFormat;
-        if (total === 1) {
-            totalFormat = `${MoneyChain.convert(apiProduct.price * total)}`;
-        } else {
-            totalFormat = `${MoneyChain.convert(apiProduct.price)} X ${total} = ${MoneyChain.convert(apiProduct.price * total)}`;
+        let totalFormat = `${MoneyChain.convert(apiProduct.price * total)}`;
+        if (total > 1) {
+            totalFormat = `${MoneyChain.convert(apiProduct.price)} X ${total} = ${totalFormat}`;
         }
 
         this.html.innerHTML += `
