@@ -96,8 +96,8 @@ export default class Cart {
 
     /**
      * Sort Cart with ID
-     * @param a
-     * @param b
+     * @param { {} } a
+     * @param { {} } b
      * @returns { Number }
      */
     compare(a, b) {
