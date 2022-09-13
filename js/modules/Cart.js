@@ -49,7 +49,7 @@ export default class Cart {
                     // Event Input Increment Decrement
                     new EventCartProductUpdate();
                     // Event Button Delete product
-                    new EventCartProductDelete(product);
+                    new EventCartProductDelete();
 
                 })
                 .catch(e => console.error(e));
