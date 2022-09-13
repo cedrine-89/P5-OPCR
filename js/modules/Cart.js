@@ -44,7 +44,7 @@ export default class Cart {
 
             apiProduct.getApi(this.urlProducts + id)
                 .then(data => {
-                    this.makeTemplate(id, color, product.total ,apiProduct.data);
+                    this.makeTemplate(id, color, product.total , apiProduct.data);
                     cartTotal.addProducts(product.total, apiProduct.data.price);
                     // Event Input Increment Decrement
                     new EventCartProductUpdate();
