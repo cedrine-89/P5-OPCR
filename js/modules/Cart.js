@@ -50,10 +50,8 @@ export default class Cart {
                     new EventCartProductUpdate();
                     // Event Button Delete product
                     new EventCartProductDelete();
-
                 })
                 .catch(e => console.error(e));
-
         });
     }
 
