@@ -2,7 +2,7 @@
  * ValidatorID and set UrlProduct for getUrlProduct
  */
 export default class ValidatorID {
-    urlApi = "http://192.168.1.11:3000/api/products";
+    urlApi = "http://localhost:3000/api/products";
     queryString = window.location.search;
     regexp = new RegExp(/^\w*$/);
 

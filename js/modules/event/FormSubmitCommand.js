@@ -1,7 +1,7 @@
 import LocalStorageDelete from "./../local_storage/LocalStorageDelete.js";
 
 export default class FormSubmitCommand {
-    urlOrder = "http://192.168.1.11:3000/api/products/order";
+    urlOrder = "http://localhost:3000/api/products/order";
     nameObjectStorage = 'Products';
 
     firstNameErrorMsg = document.querySelector('#firstNameErrorMsg');

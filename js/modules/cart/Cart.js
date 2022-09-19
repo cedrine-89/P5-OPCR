@@ -6,7 +6,7 @@ import EventCartProductDelete from "./../event/EventCartProductDelete.js";
 
 export default class Cart {
     nameObjectStorage = 'Products';
-    urlProducts = "http://192.168.1.11:3000/api/products/";
+    urlProducts = "http://localhost:3000/api/products/";
     html = document.querySelector('#cart__items');
     form = document.querySelector('.cart');
     cartAndFormContainer = document.querySelector('#cartAndFormContainer');
